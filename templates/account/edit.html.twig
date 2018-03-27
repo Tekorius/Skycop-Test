@@ -3,6 +3,8 @@
 {% block content %}
 
     <div class="row">
+
+        {# ===== Account Edit Colum ===== #}
         <div class="col-xs-24 col-lg-16">
             <h1 class="h-pt10 h-mb20 h-mb50-md">Edit profile</h1>
 
@@ -50,6 +52,32 @@
 
                 <button type="submit" class="btn btn-primary h-mt25 btn-block-sm">Save changes</button>
             {{ form_end(form) }}
+        </div>
+
+        {# ===== Login Log Column ===== #}
+        <div class="col-xs-24 col-lg-8">
+            <div class="card">
+                <h3>Login Logs</h3>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for log in login_logs %}
+                        <tr>
+                            <td>{{ log.date|date('Y-m-d H:i:s') }}</td>
+                            <td>
+                                <span class="badge {% if log.action == 'login' %}badge-success{% else %}badge-warning{% endif %}">{{ log.action }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -33,7 +33,7 @@ Getting Started
         ./c d:d:c
         ./c d:s:u --force
         
-6. You can now open the website and create an account
+6. You can now open the website, create an account and log in
         
 Tools Used
 ----------
@@ -64,3 +64,21 @@ Very standard tools that you should already have
 Thanks for keeping an unminified version of your css on your servers :)
 
 Interesting choice on using 24 columns
+
+A bit of explanation
+--------------------
+
+As mentioned before, this example does not include anything super fancy.
+
+Some key points:
+
+* Default Symfony 4 login flow was used
+* Users are provided by database
+* User passwords are hashed with bcrypt of course
+* Event listeners are listening for login/logout events and logging
+    the actions
+* Default Symfony validation is used to validate the forms
+* Template is stolen from Skycop's website
+
+Mostly Symfony documentation was followed. More explanations can be found
+in their respective class documentation.

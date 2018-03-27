@@ -24,10 +24,16 @@ class AccountController extends Controller
     }
 
     /**
+     * Account edit page
+     *
+     * Also includes login log
+     *
      * @Route("/", name="edit")
      */
     public function edit(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         /** @var User $user */
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
@@ -42,7 +48,7 @@ class AccountController extends Controller
             $this->addFlash('success', 'Saved!');
 
             // Flush
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             // Redirect back to self to prevent additional submits by refresh
             return $this->redirectToRoute('account_edit');
@@ -50,10 +56,13 @@ class AccountController extends Controller
 
         return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
+            'login_logs' => $em->getRepository('App:LoginLog')->findByUser($user),
         ]);
     }
 
     /**
+     * Registration form
+     *
      * @Route("/register", name="register")
      */
     public function register(Request $request)
@@ -78,11 +87,18 @@ class AccountController extends Controller
             return $this->redirectToRoute('login');
         }
 
-        return $this->render('register/register.html.twig', [
+        return $this->render('account/register.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
+    /**
+     * Encode plain password and set it to user if plainPass is valid.
+     * Does nothing if plainPass is null or empty
+     *
+     * @param User $user Actual user
+     * @param string|null $plainPass Plain text password to be encoded
+     */
     private function parsePassword(User $user, $plainPass)
     {
         if (null !== $plainPass && '' !== trim($plainPass)) {

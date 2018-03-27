@@ -22,6 +22,7 @@ security:
                 check_path: login
                 default_target_path: account_edit
             logout:
+                handlers: [App\EventListener\LogoutListener]
                 path: /logout
                 target: /login
 
