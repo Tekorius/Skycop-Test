@@ -1,0 +1,56 @@
+{% extends 'base/secure.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-24 col-lg-16">
+            <h1 class="h-pt10 h-mb20 h-mb50-md">Edit profile</h1>
+
+            {{ form_start(form) }}
+                <h3 class="h-mb10">Personal information</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.country) }}
+                    </div>
+
+                    <div class="col-md-12">
+                        {{ form_row(form.city) }}
+                    </div>
+                </div>
+
+                <hr class="h-mt0 mb10">
+
+                <h3 class="h-mb10">Change password</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(form.password.first, {'label': 'Enter Password'}) }}
+                    </div>
+
+                    <div class="col-md-12">
+                        {{ form_row(form.password.second, {'label': 'Repeat Password'}) }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary h-mt25 btn-block-sm">Save changes</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

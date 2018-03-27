@@ -1,0 +1,29 @@
+<nav class="navbar blurrable">
+    <div class="container d-flex justify-content-between">
+        <a href="#" id="logoElem" class="navbar-brand h-pos-a">Skycop</a>
+
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+            </li>
+        </ul>
+
+        <div class="dropdown h-pos-rel h-r h-t-14 hidden-md-down">
+            <button class="btn btn-link btn-sm dropdown-toggle center-out"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+            >
+                    <span class="hidden-md-down" id="fullName">
+                        {{ app.user.firstName }} {{ app.user.lastName }}
+
+                        <img src="https://claim.skycop.com/images/logout.svg" alt="user" class="user-3">
+                    </span>
+            </button>
+        </div>
+    </div>
+</nav>

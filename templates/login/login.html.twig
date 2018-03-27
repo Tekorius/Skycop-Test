@@ -1,0 +1,64 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {# Logo #}
+        <a class="navbar-brand" href="#">skycop24</a>
+
+        <div class="row">
+            <div class="col-md-16 offset-md-4 col-lg-10 offset-lg-7 h-pb60">
+                <div class="panel-box">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    <form action="{{ path('login') }}" method="post">
+
+                        {# Email #}
+                        <div class="form-group h-mb30 ">
+                            <input type="email"
+                                   class="form-control"
+                                   name="_username"
+                                   placeholder="Enter your email"
+                                   value="{{ last_username }}"
+                                   required>
+                        </div>
+
+                        {# Password #}
+                        <div class="form-group h-mb30 ">
+                            <input type="password"
+                                   class="form-control"
+                                   name="_password"
+                                   placeholder="Enter password"
+                                   minlength="8"
+                                   required>
+                        </div>
+
+                        {# Error #}
+                        {% if error %}
+                            <div class="form-group has-danger">{{ error.messageKey }}</div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-primary h-mt25 btn-block">Login</button>
+
+                        <hr class="dashed h-mb15">
+
+                        <div class="row">
+                            <div class="col-14">Don't have an account yet?</div>
+                            <div class="col-10 text-right">
+                                <a href="{{ path('account_register') }}" class="btn btn-sm btn-secondary">Sign up</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+
+    {% include 'base/secure/navbar.html.twig' %}
+
+    <div class="container">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include 'base/secure/footer.html.twig' %}
+
+{% endblock %}
