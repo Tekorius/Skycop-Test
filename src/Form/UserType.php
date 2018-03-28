@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -44,9 +45,20 @@ class UserType extends AbstractType
                     new Assert\Country(),
                 ],
             ])
-            ->add('city', TextType::class, [
+            ->add('city', ChoiceType::class, [
+                // All available choices are loaded here to hack around initial value selection
+                // Not a good thing, but again - demo
+                'choices' => [
+                    'Vilnius' => 'Vilnius',
+                    'Kaunas' => 'Kaunas',
+                    'Klaipeda' => 'Klaipeda',
+                    'Kabul' => 'Kabul',
+                    'Los Angeles' => 'Los Angeles',
+                    'Austin' => 'Austin',
+                    'Martinsville' => 'Martinsville',
+                ],
                 'constraints' => [
-                    new Assert\NotNull(),
+                    new Assert\NotBlank(),
                 ],
             ])
         ;
@@ -74,6 +86,10 @@ class UserType extends AbstractType
                 ],
             ]);
         }
+
+        // Disable choice field transformer to allow any value
+        // NOTE: I know this can be changed and is not a right method of validation, but again, demo
+        $builder->get('city')->resetViewTransformers();
     }
 
     public function configureOptions(OptionsResolver $resolver)

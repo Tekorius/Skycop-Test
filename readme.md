@@ -79,6 +79,7 @@ Some key points:
     the actions
 * Default Symfony validation is used to validate the forms
 * Template is stolen from Skycop's website
+* Vanilla JS was used for city picker just for fun
 
 Mostly Symfony documentation was followed. More explanations can be found
 in their respective class documentation.

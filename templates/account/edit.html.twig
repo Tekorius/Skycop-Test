@@ -28,11 +28,11 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        {{ form_row(form.country) }}
+                        {{ form_row(form.country, {'id': 'country-picker'}) }}
                     </div>
 
                     <div class="col-md-12">
-                        {{ form_row(form.city) }}
+                        {{ form_row(form.city, {'id': 'city-picker'}) }}
                     </div>
                 </div>
 
@@ -80,5 +80,13 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('js/city-picker.js') }}"></script>
 
 {% endblock %}
